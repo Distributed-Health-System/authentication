@@ -1,0 +1,51 @@
+{
+  "realm": "health-system",
+  "enabled": true,
+  "displayName": "Distributed Health System",
+  "sslRequired": "external",
+  "registrationAllowed": false,
+  "loginWithEmailAllowed": true,
+  "duplicateEmailsAllowed": false,
+  "resetPasswordAllowed": true,
+  "editUsernameAllowed": false,
+  "bruteForceProtected": true,
+  "accessTokenLifespan": 300,
+  "refreshTokenMaxReuse": 0,
+  "roles": {
+    "realm": [
+      {
+        "name": "patient",
+        "description": "Patient role - access to own health records and appointments"
+      },
+      {
+        "name": "doctor",
+        "description": "Doctor role - access to their patient records and clinical services"
+      },
+      {
+        "name": "admin",
+        "description": "Admin role - full system access"
+      }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "health-system-client",
+      "enabled": true,
+      "publicClient": true,
+      "redirectUris": ["http://localhost:3000/*"],
+      "webOrigins": ["http://localhost:3000"],
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": true,
+      "protocol": "openid-connect"
+    },
+    {
+      "clientId": "api-gateway",
+      "enabled": true,
+      "publicClient": false,
+      "serviceAccountsEnabled": true,
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "protocol": "openid-connect"
+    }
+  ]
+}
