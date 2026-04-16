@@ -46,7 +46,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: ${{ github.event_name == 'push' }}
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/health-auth:latest,${{ secrets.DOCKERHUB_USERNAME }}/health-auth:${{ steps.vars.outputs.short_sha }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/authentication-service:latest,${{ secrets.DOCKERHUB_USERNAME }}/authentication-service:${{ steps.vars.outputs.short_sha }}
         env:
           DOCKER_BUILDKIT: 1
 
@@ -62,7 +62,7 @@ jobs:
         if: github.event_name == 'push'
         working-directory: infrastructure/k8s/authentication
         run: |
-          kustomize edit set image your-dockerhub-user/health-auth=${{ secrets.DOCKERHUB_USERNAME }}/health-auth:${{ steps.vars.outputs.short_sha }}
+          kustomize edit set image amzalfoumi/authentication-service=${{ secrets.DOCKERHUB_USERNAME }}/authentication-service:${{ steps.vars.outputs.short_sha }}
 
       - name: Commit and Push back to GitOps Repo
         if: github.event_name == 'push'
