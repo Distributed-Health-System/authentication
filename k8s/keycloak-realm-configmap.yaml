@@ -1,0 +1,6 @@
+# Run this to generate the ConfigMap from your realm-export.json:
+#   kubectl create configmap keycloak-realm-config \
+#     --from-file=realm.json=./keycloak/realm-export.json \
+#     --dry-run=client -o yaml > k8s/keycloak-realm-configmap.yaml
+#
+# Then apply with: kubectl apply -f k8s/keycloak-realm-configmap.yaml
